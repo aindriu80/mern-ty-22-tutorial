@@ -1,1 +1,1 @@
-# mern-ty-22-tutorial
+# mern-yt-22-tutorial
