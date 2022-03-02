@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { FaUser } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 function Register() {
   const [formData, setFormData] = useState({
     name: '',
@@ -80,6 +81,7 @@ function Register() {
               </button>
             </div>
           </div>
+          <Link to="/login">Already have an account?</Link>
         </form>
       </section>
     </>
