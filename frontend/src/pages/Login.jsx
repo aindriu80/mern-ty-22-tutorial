@@ -1,13 +1,39 @@
 import { useState, useEffect } from 'react'
 import { FaSignInAlt } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { login, reset } from '../features/auth/authSlice'
+import Spinner from '../components/Spinner'
+
 function Login() {
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
     password: '',
+    passwordConfirmed: '',
   })
 
   const { email, password } = formData
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  )
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message)
+    }
+
+    // Redirect when logged in
+    if (isSuccess || user) {
+      navigate('/')
+    }
+    dispatch(reset())
+  }, [isError, isSuccess, user, message, navigate, dispatch])
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -17,7 +43,16 @@ function Login() {
   }
   const onSubmit = (e) => {
     e.preventDefault()
+    const userData = {
+      email,
+      password,
+    }
+    dispatch(login(userData))
   }
+  if (isLoading) {
+    return <Spinner />
+  }
+
   return (
     <>
       <section className="heading">
@@ -37,26 +72,26 @@ function Login() {
               id="email"
               name="email"
               value={email}
-              placeholder="Enter your email"
               onChange={onChange}
+              placeholder="Enter your email "
+              required
             />
-            <div className="form-group">
-              <input
-                type="text"
-                className="form-control"
-                id="password"
-                name="password"
-                value={password}
-                placeholder="Enter your password"
-                onChange={onChange}
-              />
-            </div>
-            <div className="form-group">
-              <button type="submit" className="btn btn-block">
-                Submit
-              </button>
-            </div>
-            <Link to="/register">Don't have an account?</Link>
+          </div>
+          <div className="form-group">
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              name="password"
+              value={password}
+              onChange={onChange}
+              placeholder="Enter your password "
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <button className="btn btn-block">Submit</button>
           </div>
         </form>
       </section>

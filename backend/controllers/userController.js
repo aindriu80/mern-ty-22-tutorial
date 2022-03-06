@@ -9,6 +9,7 @@ const User = require('../models/userModel')
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body
 
+  // Validation
   if (!name || !email || !password) {
     res.status(400)
     throw new Error('Please add all fields')
@@ -34,14 +35,14 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (user) {
     res.status(201).json({
-      _id: user._id,
+      _id: user.id,
       name: user.name,
       email: user.email,
       token: generateToken(user._id),
     })
   } else {
     res.status(400)
-    throw new Error('Invalid user data')
+    throw new error('Invalid user.data')
   }
 })
 

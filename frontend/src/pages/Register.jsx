@@ -44,7 +44,7 @@ function Register() {
     e.preventDefault()
 
     if (password !== confirmPassword) {
-      toast.error('Passwords to not match')
+      toast.error('Passwords do not match')
     } else {
       const userData = {
         name,
@@ -94,7 +94,7 @@ function Register() {
             />
             <div className="form-group">
               <input
-                type="text"
+              type="password"
                 className="form-control"
                 id="password"
                 name="password"
