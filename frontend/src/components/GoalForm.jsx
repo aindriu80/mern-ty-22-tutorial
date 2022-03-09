@@ -21,12 +21,13 @@ function GoalForm() {
           <input
             type="text"
             name="text"
+            id='text'
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
         </div>
         <div className="form-group">
-          <button className="but btn-block" type="submit">
+          <button className='btn btn-block' type='submit'>
             Add Goal
           </button>
         </div>

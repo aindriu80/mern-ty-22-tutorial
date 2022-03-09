@@ -8,16 +8,14 @@ import Spinner from '../components/Spinner'
 
 function Login() {
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
     password: '',
-    passwordConfirmed: '',
   })
 
   const { email, password } = formData
 
-  const dispatch = useDispatch()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
@@ -33,7 +31,7 @@ function Login() {
       navigate('/')
     }
     dispatch(reset())
-  }, [isError, isSuccess, user, message, navigate, dispatch])
+  }, [user, isError, isSuccess, message, navigate, dispatch])
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -74,7 +72,6 @@ function Login() {
               value={email}
               onChange={onChange}
               placeholder="Enter your email "
-              required
             />
           </div>
           <div className="form-group">
@@ -86,7 +83,6 @@ function Login() {
               value={password}
               onChange={onChange}
               placeholder="Enter your password "
-              required
             />
           </div>
 
