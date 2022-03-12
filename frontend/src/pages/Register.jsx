@@ -92,6 +92,7 @@ function Register() {
               placeholder="Enter your email"
               onChange={onChange}
             />
+          </div>
             <div className="form-group">
               <input
               type="password"
@@ -118,7 +119,6 @@ function Register() {
               <button type="submit" className="btn btn-block">
                 Submit
               </button>
-            </div>
           </div>
           <Link to="/login">Already have an account?</Link>
         </form>

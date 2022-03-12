@@ -10,7 +10,8 @@ const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body
 
   // Validation
-  if (!name || !email || !password) {
+  // if (!name || !email || !password) {
+  if (!email || !password) {
     res.status(400)
     throw new Error('Please add all fields')
   }
@@ -58,7 +59,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
   if (user && (await bcrypt.compare(password, user.password))) {
     res.json({
-      _id: user.id,
+      _id: user._id,
       name: user.name,
       email: user.email,
       token: generateToken(user._id),
@@ -67,6 +68,7 @@ const loginUser = asyncHandler(async (req, res) => {
     res.status(400)
     throw new Error('Invalid credentials')
   }
+  res.json({ message: 'Login User' })
 })
 
 // @desc 	  Get user data

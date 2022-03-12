@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { login, reset } from '../features/auth/authSlice'
+import { Link } from 'react-router-dom'
 import Spinner from '../components/Spinner'
 
 function Login() {
@@ -70,8 +71,8 @@ function Login() {
               id="email"
               name="email"
               value={email}
+              placeholder="Enter your email"
               onChange={onChange}
-              placeholder="Enter your email "
             />
           </div>
           <div className="form-group">
@@ -81,14 +82,17 @@ function Login() {
               id="password"
               name="password"
               value={password}
+              placeholder="Enter password"
               onChange={onChange}
-              placeholder="Enter your password "
             />
           </div>
 
           <div className="form-group">
-            <button className="btn btn-block">Submit</button>
+            <button type="submit" className="btn btn-block">
+              Submit
+            </button>
           </div>
+          <Link to="/register">Dont have an account?</Link>
         </form>
       </section>
     </>

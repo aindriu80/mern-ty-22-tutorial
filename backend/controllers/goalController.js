@@ -1,5 +1,4 @@
 const asyncHandler = require('express-async-handler')
-const res = require('express/lib/response')
 
 const Goal = require('../models/goalModel')
 const User = require('../models/userModel')
